@@ -17,6 +17,6 @@ class UserTimelineViewController: TWTRTimelineViewController {
         super.viewDidLoad()
         
         let client = TWTRAPIClient()
-        self.dataSource = TWTRUserTimelineDataSource(screenName: "fabric", APIClient: client)
+        self.dataSource = TWTRUserTimelineDataSource(screenName: "fabric", apiClient: client)
     }
 }

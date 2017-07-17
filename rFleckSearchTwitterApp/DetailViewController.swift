@@ -19,7 +19,7 @@ class DetailViewController: TWTRTimelineViewController {
         let client: TWTRAPIClient = TWTRAPIClient()
         
         //self.dataSource = TWTRSearchTimelineDataSource(searchQuery: self.teamForSearch, APIClient: client)
-        self.dataSource = TWTRSearchTimelineDataSource(searchQuery: self.teamForSearch, APIClient: client, languageCode: nil, maxTweetsPerRequest: 20)
+        self.dataSource = TWTRSearchTimelineDataSource(searchQuery: self.teamForSearch, apiClient: client, languageCode: nil, maxTweetsPerRequest: 20)
         self.showTweetActions = true
         
         //Alert.DisplayInfoOKButton("Twitter Login Error", message: error!.localizedDescription, actionTitle: "OK", controller: self)

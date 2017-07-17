@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class Alert {
-    class func DisplayInfoOKButton(title: String, message: String, actionTitle: String, controller: UIViewController) {
-        let alertMessage = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertMessage.addAction(UIAlertAction(title:actionTitle, style: UIAlertActionStyle.Default, handler: nil))
-        controller.presentViewController(alertMessage, animated: true, completion: nil)
+    class func DisplayInfoOKButton(_ title: String, message: String, actionTitle: String, controller: UIViewController) {
+        let alertMessage = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertMessage.addAction(UIAlertAction(title:actionTitle, style: UIAlertActionStyle.default, handler: nil))
+        controller.present(alertMessage, animated: true, completion: nil)
     }
 }

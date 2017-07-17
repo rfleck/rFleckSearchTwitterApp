@@ -49,8 +49,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         navigationItem.title = "NBA Teams - Twitter News"
       
-        self.listOfTeams = self.listOfTeams.sort({ $0.TeamCity < $1.TeamCity })
-        self.Teams.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.listOfTeams = self.listOfTeams.sorted(by: { $0.TeamCity < $1.TeamCity })
+        self.Teams.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         self.Teams.dataSource = self
         self.Teams.delegate = self
@@ -60,29 +60,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.listOfTeams.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let team: Team = listOfTeams[indexPath.row]
         
         cell.textLabel!.text = team.TeamCityName()
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let team: Team = listOfTeams[indexPath.row]
         
         teamSelected = team.TeamCityName()
-        self.performSegueWithIdentifier(detailSegueID, sender: self)
+        self.performSegue(withIdentifier: detailSegueID, sender: self)
         //Alert.DisplayInfoOKButton("Your Selection", message: teamSelected, actionTitle: "OK", controller: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == detailSegueID {
-            let detailViewController = segue.destinationViewController
+            let detailViewController = segue.destination
                 as! DetailViewController
             
             detailViewController.teamForSearch = teamSelected

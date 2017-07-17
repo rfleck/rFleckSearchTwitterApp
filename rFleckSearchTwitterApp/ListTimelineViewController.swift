@@ -18,6 +18,6 @@ class ListTimelineViewController: TWTRTimelineViewController {
         super.viewDidLoad()
         
         let client = TWTRAPIClient()
-        self.dataSource = TWTRListTimelineDataSource(listSlug: "twitter-syndication-team", listOwnerScreenName: "benward", APIClient: client)
+        self.dataSource = TWTRListTimelineDataSource(listSlug: "twitter-syndication-team", listOwnerScreenName: "benward", apiClient: client)
     }
 }

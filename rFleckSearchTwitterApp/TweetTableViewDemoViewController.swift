@@ -30,11 +30,11 @@ class TweetTableViewDemoViewController: UITableViewController, TWTRTweetViewDele
         
         // Explicitly set on iOS 8 if using automatic row height calculation
         tableView.allowsSelection = false
-        tableView.registerClass(TWTRTweetTableViewCell.self, forCellReuseIdentifier: tweetTableReuseIdentifier)
+        tableView.register(TWTRTweetTableViewCell.self, forCellReuseIdentifier: tweetTableReuseIdentifier)
         
         // Load Tweets
         let client = TWTRAPIClient()
-        client.loadTweetsWithIDs(tweetIDs) { tweets, error in
+        client.loadTweets(withIDs: tweetIDs) { tweets, error in
             if let ts = tweets as? [TWTRTweet] {
                 self.tweets = ts
             } else {
@@ -44,20 +44,20 @@ class TweetTableViewDemoViewController: UITableViewController, TWTRTweetViewDele
     }
     
     // MARK: UITableViewDelegate Methods
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tweets.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweet = tweets[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(tweetTableReuseIdentifier, forIndexPath: indexPath) as! TWTRTweetTableViewCell
-        cell.configureWithTweet(tweet)
+        let cell = tableView.dequeueReusableCell(withIdentifier: tweetTableReuseIdentifier, for: indexPath) as! TWTRTweetTableViewCell
+        cell.configure(with: tweet)
         cell.tweetView.delegate = self
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let tweet = tweets[indexPath.row]
-        return TWTRTweetTableViewCell.heightForTweet(tweet, width: CGRectGetWidth(self.view.bounds))
+        return TWTRTweetTableViewCell.height(for: tweet, width: self.view.bounds.width)
     }
 }

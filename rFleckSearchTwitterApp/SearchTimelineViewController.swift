@@ -19,10 +19,10 @@ class SearchTimelineViewController: TWTRTimelineViewController {
         super.viewDidLoad()
         
         let client = TWTRAPIClient()
-        self.dataSource = TWTRSearchTimelineDataSource(searchQuery: searchString, APIClient: client)
+        self.dataSource = TWTRSearchTimelineDataSource(searchQuery: searchString, apiClient: client)
     }
     
-    func setStringSearch(mySearch: String) {
+    func setStringSearch(_ mySearch: String) {
         self.searchString = mySearch
     }
 }
